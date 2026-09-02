@@ -1,0 +1,7 @@
+# React Three Fiber & Three.js Rules
+- Use functional React components with standard ES6 syntax.
+- Use `@react-three/fiber` and `@react-three/drei` hooks (e.g., `useGLTF`, `OrbitControls`, `Grid`).
+- Assume 1 Three.js unit = 1 meter.
+- Never manipulate the DOM directly for 3D elements. Use declarative R3F primitives and `useRef`.
+- When loading GLTF/GLB models, always use `useGLTF` and clone the scene using `<primitive object={scene.clone()} />`.
+- Do not use `@types/three` unless we explicitly switch to TypeScript.
