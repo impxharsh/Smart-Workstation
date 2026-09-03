@@ -1,14 +1,15 @@
 import { useGLTF } from '@react-three/drei'
 
-export default function Human({ position, rotation, scale }) {
-    const {scene} = useGLTF('/models/human/human.glb');
+export default function Human({ position = [0, 0, 0], rotation = [0, 0, 0] }) {
+    const { scene } = useGLTF('/models/human/human.glb')
+
     return (
-        <primitive
+        <group position={position} rotation={rotation}>
+            <primitive 
             object={scene.clone()}
-            position={position}
-            rotation={rotation}
-            scale={scale}
-        />
+            scale = {1}
+            />
+        </group>
     )
 }
 

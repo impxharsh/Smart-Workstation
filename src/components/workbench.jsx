@@ -1,14 +1,18 @@
 import { useGLTF } from '@react-three/drei'
 
-export default function Workbench({ position, rotation, scale }) {
+export default function Workbench({ position = [0, 0, 0], rotation }) {
   const { scene } = useGLTF('/models/furniture/workbench.glb')
   return (
-    <primitive
-      object={scene.clone()}
-      position={position}
-      rotation={rotation}
-      scale={scale}
-    />
+
+    <group position={position} rotation={rotation}>
+      
+      <group scale={0.01} rotation={[0,Math.PI/2, 0]}>
+        <primitive
+          object={scene.clone()}
+        />
+      </group>
+      
+    </group>
   )
 }
 

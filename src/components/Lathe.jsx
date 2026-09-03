@@ -1,14 +1,15 @@
 import { useGLTF } from '@react-three/drei'
 
-export default function Lathe({ position, rotation, scale }) {
+export default function Lathe({ position = [0, 0, 0], rotation = [0, 0, 0] }) {
   const { scene } = useGLTF('/models/machines/lathe_machine.glb')
+  
   return (
-    <primitive
-      object={scene.clone()}
-      position={position}
-      rotation={rotation}
-      scale={scale}
-    />
+    <group position={position} rotation={rotation}>
+      <primitive
+        object={scene.clone()}
+        scale={1} 
+      />
+    </group>
   )
 }
 

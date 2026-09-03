@@ -1,14 +1,15 @@
 import { useGLTF } from '@react-three/drei'
 
-export default function Drill({ position, rotation, scale }) {
+export default function Drill({ position = [0, 0, 0], rotation = [0, 0, 0] }) {
   const { scene } = useGLTF('/models/machines/tools__drilling_machine.glb')
+  
   return (
-    <primitive
-      object={scene.clone()}
-      position={position}
-      rotation={rotation}
-      scale={scale}
-    />
+    <group position={position} rotation={rotation}>
+      <primitive
+        object={scene.clone()}
+        scale={3}
+      />
+    </group>
   )
 }
 
