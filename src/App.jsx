@@ -11,8 +11,6 @@ import StorageBin from './components/storageBin'
 import Conveyer from './components/conveyer'
 
 
-
-
 const ComponentMap = {
   lathe: Lathe,
   drill: Drill,
@@ -36,6 +34,10 @@ function App() {
   ])
 
   const [activeId, setActiveId] = useState(0)
+
+  const [prompt, setPrompt] = useState("")
+  const [isThinking, setIsThinking] = useState(false);
+
 
   return (
     <>
@@ -61,6 +63,57 @@ function App() {
           }}
         >
           Export JSON Layout
+        </button>
+      </div>
+
+      {/* AI COMMAND INTERFACE */}
+      <div style={{ 
+        position: 'absolute', 
+        bottom: 40, 
+        left: '50%', 
+        transform: 'translateX(-50%)', 
+        zIndex: 10,
+        display: 'flex',
+        gap: '10px',
+        width: '600px',
+        backgroundColor: 'rgba(15, 23, 42, 0.8)',
+        padding: '15px',
+        borderRadius: '10px',
+        backdropFilter: 'blur(10px)'
+      }}>
+        <input 
+          type="text" 
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          placeholder="e.g., Move all machines to the left side..."
+          style={{ 
+            flex: 1, 
+            padding: '12px', 
+            borderRadius: '5px', 
+            border: '1px solid #475569',
+            backgroundColor: '#1e293b',
+            color: 'white',
+            outline: 'none'
+          }}
+        />
+        <button 
+          onClick={() => {
+            console.log("Sending to Gemini:", prompt)
+            console.log("Current Layout Context:", layout)
+            // We will add the actual Gemini API call here in Step 2!
+          }}
+          disabled={isThinking}
+          style={{ 
+            padding: '12px 24px', 
+            cursor: isThinking ? 'not-allowed' : 'pointer', 
+            backgroundColor: isThinking ? '#475569' : '#10b981', 
+            color: 'white', 
+            border: 'none', 
+            borderRadius: '5px',
+            fontWeight: 'bold'
+          }}
+        >
+          {isThinking ? 'Optimizing...' : 'Ask AI'}
         </button>
       </div>
         
